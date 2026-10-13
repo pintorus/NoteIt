@@ -18,6 +18,13 @@ class Unfiled extends NoteFilter {
 class InFolder extends NoteFilter {
   const InFolder(this.folderId);
   final int folderId;
+
+  @override
+  bool operator ==(Object other) =>
+      other is InFolder && other.folderId == folderId;
+
+  @override
+  int get hashCode => folderId.hashCode;
 }
 
 class Trash extends NoteFilter {
