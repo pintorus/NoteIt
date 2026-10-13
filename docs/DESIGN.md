@@ -12,6 +12,7 @@ Android + iOS (v1).
 folders(id, name, color?, sortOrder, createdAt)
 notes(id, folderId?, title, contentDelta, plainText, isPinned, createdAt, updatedAt, deletedAt?)
 attachments(id, noteId, path)
+tasks(id, title, isDone, reminderAt?, repeat, sortOrder, createdAt, completedAt?)
 ```
 - Dossiers **à un seul niveau** ; note sans dossier = « Non classé ».
 - Vues système : **Toutes les notes**, **Corbeille**.
@@ -37,6 +38,14 @@ Sauvegarde automatique : 500 ms après la dernière frappe + à la sortie de l'�
 - Titre auto = première ligne si vide.
 - Pas de couleurs de note ; thème clair/sombre.
 
+## Tâches et rappels
+Onglet **Tâches** séparé des notes (comme Mi Notes).
+- Ajout rapide en haut de la liste ; tâches terminées regroupées en bas.
+- Rappel optionnel (date + heure) et récurrence : aucune / quotidienne / hebdomadaire / mensuelle (bornée au dernier jour du mois).
+- Cocher une tâche récurrente la reprogramme à la prochaine occurrence au lieu de la terminer.
+- Notifications locales : `flutter_local_notifications` + `timezone`, ID de notification = ID de tâche ; replanifiées à chaque modification et au démarrage.
+- Pas de sous-tâches en v1.
+
 ## Architecture
 - État : **Riverpod** (`StreamProvider` sur les `watch()` Drift).
 - Navigation : **go_router** (dossiers → liste → éditeur).
@@ -44,7 +53,7 @@ Sauvegarde automatique : 500 ms après la dernière frappe + à la sortie de l'�
   ```
   lib/core/       thème, utilitaires
   lib/data/       base Drift, dépôts
-  lib/features/   folders, notes, editor, search, trash
+  lib/features/   folders, notes, editor, search, trash, tasks
   ```
 - Tests : dépôts sur Drift en mémoire + tests widgets.
 

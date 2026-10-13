@@ -1,7 +1,6 @@
 .dart_tool/
 .packages
 build/
-*.g.dart
 .flutter-plugins
 .flutter-plugins-dependencies
 .idea/
