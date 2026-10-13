@@ -1,4 +1,4 @@
-package com.example.noteit
+package com.devit.noteit
 
 import io.flutter.embedding.android.FlutterActivity
 
